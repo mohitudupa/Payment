@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 from django.core.files.storage import FileSystemStorage
 import re
 from datetime import date
-from easy_pdf.views import PDFTemplateView
+# from easy_pdf.views import PDFTemplateView
 import smtplib
 from email.mime.text import MIMEText
 # from easy_pdf.rendering import *
@@ -104,9 +104,9 @@ def company_detail(request):
                     you .append(i.aadhar.email)
                 body = '''This message is a reminder to make sure you pay the following bills\n''' + usern + '''
                         ''' + ul + '''
-    
+
                         Please pay the above bill as soon as possible.
-    
+
                         Email from online bill payment portal
                                    http://127.0.0.1:8000/payment/ for more information'''
                 msg = MIMEText(body)
@@ -187,9 +187,9 @@ def due_bill(request, bill_id):
                     Bill due date       ''' + str(i.due_date) + '''
                     Bill amount         ''' + str(i.bill) + '''
                     Consumption units   ''' + str(i.consumption) + '''
-                    
+
                     Please pay the above bill as soon as possible.
-                    
+
                     Email from online bill payment portal
                                http://127.0.0.1:8000/payment/ for more information'''
             msg = MIMEText(body)
@@ -356,8 +356,8 @@ def upload(request):
         return redirect('payment/company/login')
 
 
-class HelloPDFView(PDFTemplateView):
-    template_name = 'hello123.html'
+# class HelloPDFView(PDFTemplateView):
+#     template_name = 'hello123.html'
 
 
 def gen(request):
