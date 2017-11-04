@@ -31,7 +31,6 @@ ALLOWED_HOSTS = ['192.168.0.100', '127.0.0.1', '192.168.43.186', '192.168.0.105'
 # Application definition
 
 INSTALLED_APPS = [
-    'easy_pdf',
     'payment.apps.PaymentConfig',
     'django.contrib.admin',
     'django.contrib.auth',
