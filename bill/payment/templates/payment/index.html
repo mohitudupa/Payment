@@ -1,0 +1,170 @@
+{% extends 'payment/base.html' %}
+
+{% block nav %}
+
+{% endblock %}
+
+{% block side_nav %}
+
+{% endblock %}
+
+{% block body %}<!--
+            <div class="col s9">
+                <div class="card-panel teal">
+                    <h4><span class="white-text">List of all the users</span></h4>
+                    <div class="container z-depth-5">
+                        <div class="card-panel white">
+                            {% if all_users %}
+                                {% for user in all_users %}
+                                    <div class="divider"></div>
+                                    <div class="section">
+                                        <p>
+                                            <a class="waves-effect waves-light btn" href= "{% url 'payment:detail' user.id %}">
+                                                <span class="white-text">{{ user.first }} {{ user.last }}</span>
+                                            </a>
+                                        </p>
+                                    </div>
+                                {% endfor %}
+                            <div class="divider"></div>
+                            {% else %}
+                            <h3>No users found</h3>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+{% endblock %}
+
+{% block sidebar %}
+
+{% endblock %}
+
+{% block parallax %}
+    <div id="index-banner1" class="parallax-container">
+            <div class="section no-pad-bot">
+                <div class="container">
+                    <br><br>
+                    <div class="row bottom">
+                        <h5 class="header col s12 light white-text">       </h5>
+                    </div>
+                    <div class="row bottom">
+
+                        <a href="{% url 'payment:user_login' %}" id="download-button1" class="btn-large waves-effect waves-light teal lighten-1btn tooltipped" data-position="right" data-delay="50" data-tooltip="Click to login">User Login</a>
+                    </div>
+                    <br><br>
+                </div>
+            </div>
+            <div class="parallax">
+                {% load staticfiles %}
+                <img src="{% static 'payment/images/test5.png' %}" alt="Unsplashed background img 1">
+            </div>
+    </div>
+
+    <div class="container">
+        <div class="section">
+             <div class="row">
+                <div class="col s12 m12 l12">
+                    <ul class="collapsible" data-collapsible="accordion">
+                        <li>
+                            <div class="collapsible-header active"><i class="material-icons">group</i>User Experience Focused</div>
+                            <div class="collapsible-body">
+                                <div class="section">
+                                    <p class="light">We did most of the heavy lifting for you to provide a simple portal to keep you up on all your bills. All your bills are kept secure and can only be accesses by you.</p>
+                                    <p class="light">Signup now to experience easy and secure payments of your bills</p>
+                                </div>
+                                <div class="section">
+                                    <div class="centre">
+                                        <a href="{% url 'payment:register' %}"  class="btn-large waves-effect waves-light teal lighten-1btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="It's Free!!!">Register</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="collapsible-header"><i class="material-icons">info</i>More info</div>
+                            <div class="col s12 m12 collapsible-body">
+                                <div class="card teal horizontal">
+                                    <div class="card-image">
+                                        {% load staticfiles %}
+                                        <img src="{% static 'payment/images/Help1.png' %}">
+                                        <span class="card-title">Site Guide</span>
+                                    </div>
+                                    <div class="card-content white-text">
+                                        <p>The section contains the login and registration links for users. By logging in
+                                            Users can access all their bills of the companies they have subscriptions.</p>
+                                    </div>
+                                    <div class="card-action">
+                                        <a href="{% url 'payment:user_login' %}">Login</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+             </div>
+        </div>
+    </div>
+
+
+    <div id="index-banner2" class="parallax-container">
+            <div class="section no-pad-bot">
+                <div class="container">
+                    <br><br>
+                    <div class="row bottom">
+                        <h5 class="header col s12 light white-text">          </h5>
+                    </div>
+                    <div class="row bottom right">
+                        <a href="{% url 'payment:company_login' %}" id="download-button2" class="btn-large waves-effect waves-light teal lighten-1btn tooltipped" data-position="left" data-delay="50" data-tooltip="Click to login">Company Login</a>
+                    </div>
+                    <br><br>
+                </div>
+            </div>
+            <div class="parallax">
+                {% load staticfiles %}
+                <img src="{% static 'payment/images/Company1.png' %}" alt="Unsplashed background img 1">
+            </div>
+    </div>
+
+    <div class="container">
+        <div class="section">
+
+            <div class="row">
+                <div class="col s12 m12 l12">
+                    <ul class="collapsible" data-collapsible="accordion">
+                        <li>
+                            <div class="collapsible-header"><i class="material-icons">info</i>More info</div>
+                            <div class="col s12 m12 collapsible-body">
+                                <div class="card teal horizontal">
+                                    <div class="card-image">
+                                        {% load staticfiles %}
+                                        <img src="{% static 'payment/images/Help1.png' %}">
+                                        <span class="card-title">Site Guide</span>
+                                    </div>
+                                    <div class="card-content white-text">
+                                            <p>The section contains the login link for companies. By logging in
+                                                you can access the list and the bills of all users that have not yet paid
+                                                their bills.</p>
+                                    </div>
+                                    <div class="card-action">
+                                        <a href="{% url 'payment:company_login' %}">Login</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="collapsible-header active"><i class="material-icons">flash_on</i>Speeds up transactions</div>
+                            <div class="collapsible-body">
+                                <div class="section">
+                                    <p class="light">We maintain and track all the bills that have to be paid. By logging in you
+                                        can access the user details of all the subscribers who have not yet paid their bills</p>
+                                    <p class="light">To register your company to our service please contact us via the contact
+                                        info in the footer</p>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

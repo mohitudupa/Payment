@@ -1,0 +1,187 @@
+{% extends 'payment/base.html' %}
+
+{% block title %}
+    Company details
+{% endblock %}
+
+{% block nav %}
+    <li><a href="{% url 'payment:company_change_password' %}">Change Password</a></li>
+    <li><a href="{% url 'payment:user_logout' %}">Logout</a></li>
+{% endblock %}
+
+{% block side_nav %}
+    <li><a href="{% url 'payment:company_change_password' %}">Change Password</a></li>
+    <li><a href="{% url 'payment:user_logout' %}">Logout</a></li>
+{% endblock %}
+
+{% block bread %}
+    <a href="{% url 'payment:index' %}" class="breadcrumb">Home</a>
+    <a href="" class="breadcrumb">{{ name }}</a>
+{% endblock %}
+
+{% block body %}
+            <div class="col s12 m12 l12">
+                <div class="card-panel teal">
+                    <div class="row">
+                        <h6><span class="white-text">List of all the users with unpaid status</span></h6>
+                    </div>
+                    <div class="row">
+                        <div class="card-panel white row">
+                            <form class="col s12" action="" method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                    <div class="row">
+                                        <div class="col s12">
+                                            <div class="row">
+                                                <div class="input-field col s12">
+                                                    <i class="material-icons prefix">textsms</i>
+                                                    <input type="text" id="autocomplete-input" class="autocomplete" name="name">
+                                                    <label for="autocomplete-input">Search for users</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button class="btn waves-effect waves-light center" type="submit" name="action">Search
+                                        <i class="material-icons right">send</i>
+                                    </button>
+                            </form>
+                        </div>
+                    </div>
+
+
+
+
+                </div>
+            </div>
+            {% if toast %}
+                <script>
+                    Materialize.toast('Message Sent to multiple users', 4000)
+                </script>
+            {% endif %}
+            {% if all_bills %}
+                {% for bills in all_bills %}
+                    {% if not bills.status %}
+                        <div class="row">
+                            <div class="col s12 m12 l12">
+                                <div class="card teal lighten">
+                                    <div class="card-content">
+                                        <div class="white-text">
+                                            <div class="section">
+                                                {{ bills.aadhar }}<br>
+                                            </div>
+                                            <div class="divider"></div>
+                                            <div class="section">
+                                                Email : {{ bills.aadhar.email }}<br>
+                                                Phone : {{ bills.aadhar.phone }}
+                                            </div>
+                                            <div class="divider"></div>
+                                        </div>
+                                    </div>
+                                    <div class="card-action">
+                                        <a href="{% url 'payment:due_bill' bills.id %} " class="gold-text">Bills</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+                <div class="divider"></div>
+                <div class="col s12 m12 l12">
+                    <div class="card-panel teal">
+                        <div class="section">
+                            <form class="col s12" action="" method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <button class="btn waves-effect waves-light center" type="submit" name="action">Send email to all above users
+                                    <i class="material-icons right">email</i>
+                                </button>
+                            </form>
+                        </div>
+                        <div class="section">
+                            <div class="divider"></div>
+                        </div>
+                    </div>
+                </div>
+            {% else %}
+                <div class="col s12 m12 l12">
+                    <div class="card-panel teal">
+                        <h6><span class="white-text">No users found</span></h6>
+                    </div>
+                </div>
+            {% endif %}
+
+{% endblock %}
+
+{% block sidebar %}
+
+{% endblock %}
+
+{% block parallax %}
+    <div id="index-banner2" class="parallax-container">
+            <div class="section no-pad-bot">
+                <div class="container">
+                    <br><br>
+                    <div class="row bottom">
+                        <h5 class="header col s12 light white-text">          </h5>
+                    </div>
+                    <div class="row bottom right">
+                        <a href="{% url 'payment:user_logout' %}" id="download-button2" class="btn-large waves-effect waves-light teal lighten-1">Logout</a>
+                    </div>
+                    <br><br>
+                </div>
+            </div>
+            <div class="parallax">
+                {% load staticfiles %}
+                <img src="{% static 'payment/images/Company1.png' %}" alt="Unsplashed background img 1">
+            </div>
+    </div>
+
+    <div class="container">
+        <div class="section">
+            <div class="row">
+                <div class="col s12 m12 l12">
+                    <ul class="collapsible" data-collapsible="accordion">
+                        <li>
+                            <div class="collapsible-header"><i class="material-icons">info</i>More info</div>
+                            <div class="col s12 m12 collapsible-body">
+                                <div class="card teal horizontal">
+                                    <div class="card-image">
+                                        {% load staticfiles %}
+                                        <img src="{% static 'payment/images/Help1.png' %}">
+                                        <span class="card-title">Site Guide</span>
+                                    </div>
+                                    <div class="card-content white-text">
+                                        <p>This page contains the list of all the customers subscribed to your service and
+                                        haven't payed their bills yet. Make sure you logout before leaving to ensure that
+                                        your account will not be misused</p>
+                                    </div>
+                                    <div class="card-action">
+                                        <a href="{% url 'payment:user_logout' %}">Logout</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="collapsible-header active"><i class="material-icons">flash_on</i>Upload billing files</div>
+                            <div class="collapsible-body">
+                                <div class="section">
+                                    <p class="light">To update the billing database click the link below and upload the new billing file.
+                                        The format for the billing file is available in the upload page.</p>
+                                </div>
+                                <div class="section">
+                                    <div class="centre">
+                                        <a href="{% url 'payment:upload' %}"  class="btn-large waves-effect waves-light teal lighten-1 tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click here">Upload</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block footer %}
+    <li><a class="grey-text text-lighten-3" href="{% url 'payment:index' %}">Home</a></li>
+    <li><a class="grey-text text-lighten-3" href="/admin/">Admin</a></li>
+    <li><a class="grey-text text-lighten-3" href="/{% url 'payment:user_logout' %}">Logout</a></li>
+{%  endblock %}

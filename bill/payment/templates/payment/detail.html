@@ -1,0 +1,463 @@
+{% extends 'payment/base.html' %}
+
+{% block title %}
+    User details
+{% endblock %}
+
+{% block nav %}
+    <li><a href="{% url 'payment:user_change_password' %}">Change Password</a></li>
+    <li><a href="{% url 'payment:user_logout' %}">Logout</a></li>
+{% endblock %}
+
+{% block side_nav %}
+    <li><a href="{% url 'payment:user_change_password' %}">Change Password</a></li>
+    <li><a href="{% url 'payment:user_logout' %}">Logout</a></li>
+{% endblock %}
+
+{% block bread %}
+    <a href="{% url 'payment:index' %}" class="breadcrumb">Home</a>
+    <a href="" class="breadcrumb">{{ user.first }} {{ user.last }}</a>
+{% endblock %}
+
+{% block body %}
+            <div class="col s12 m12 l12">
+<!-- bsnl -->
+                <div class="card-panel teal lighten">
+                    <p>
+                        <span class="white-text">Details of user {{ user.first }}  {{ user.last }}</span>
+                    </p>
+
+                    {% if user.bsnl_set.all %}
+                        <p>
+                            <span class="white-text">Subscriptions of Bsnl</span>
+                        </p>
+                        {% for bsnl in user.bsnl_set.all %}
+                            <div class="divider"></div>
+                            <div class="section">
+                                <p>
+                                    <span class = "white-text">Bill date {{bsnl.bill_date}}<br>Bill due date {{bsnl.due_date}}<br>
+                                        Bill amount {{bsnl.bill}}<br>Payment status :
+                                        {% if bsnl.status %}
+                                             paid
+                                        {% else %}
+                                             unpaid
+                                        {% endif %}
+                                    </span>
+                                </p>
+                            </div>
+                            <div class="section">
+                                {% if bsnl.status %}
+                                    <form class="col s12" action="{% url 'payment:gen' %}" method="post" enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                        <button class="btn waves-effect waves-light center" type="submit" name="action" value="Bsnl {{ bsnl.id }}">Generate
+                                            <i class="material-icons right">send</i>
+                                        </button>
+                                    </form>
+                                {% endif %}
+                            </div>
+                            <div class="divider"></div>
+                            <div class="section"></div>
+                            {% if forloop.counter == 2 %}
+                                {{ break }}
+                            {% endif %}
+                        {% endfor %}
+                        <div class="divider"></div>
+                    {% else %}
+                        <div class="divider"></div>
+                        <p>
+                            <span class="white-text">No subscriptions for Bsnl</span>
+                        </p>
+                        <div class="divider"></div>
+                    {% endif %}
+                </div>
+<!-- electricity -->
+                <div class="card-panel teal lighten">
+                    {% if user.electricity_set.all %}
+                        <p>
+                            <span class="white-text">Subscriptions of Electricity</span>
+                        </p>
+                        {% for electricity in user.electricity_set.all %}
+                            <div class="divider"></div>
+                            <div class="section">
+                                <p>
+                                    <span class = "white-text">Bill date {{electricity.bill_date}}<br>Bill due date {{electricity.due_date}}<br>
+                                        Bill amount {{electricity.bill}}<br>Payment status :
+                                        {% if electricity.status %}
+                                             paid
+                                        {% else %}
+                                             unpaid
+                                        {% endif %}
+                                    </span>
+                                </p>
+                            </div>
+                            <div class="section">
+                                {% if electricity.status %}
+                                    <form class="col s12" action="{% url 'payment:gen' %}" method="post" enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                        <button class="btn waves-effect waves-light center" type="submit" name="action" value="Electricity {{ electricity.id }}">Generate
+                                            <i class="material-icons right">send</i>
+                                        </button>
+                                    </form>
+                                {% endif %}
+                            </div>
+                            <div class="divider"></div>
+                            <div class="section"></div>
+                            {% if forloop.counter == 2 %}
+                                {{ break }}
+                            {% endif %}
+                        {% endfor %}
+                        <div class="divider"></div>
+                    {% else %}
+                        <div class="divider"></div>
+                        <p>
+                            <span class="white-text">No subscriptions for Electricity</span>
+                        </p>
+                        <div class="divider"></div>
+                    {% endif %}
+                </div>
+<!-- water -->
+                <div class="card-panel teal lighten">
+                    {% if user.water_set.all %}
+                        <p>
+                            <span class="white-text">Subscriptions of Water</span>
+                        </p>
+                        {% for water in user.water_set.all %}
+                            <div class="divider"></div>
+                            <div class="section">
+                                <p>
+                                    <span class = "white-text">Bill date {{water.bill_date}}<br>Bill due date {{water.due_date}}<br>
+                                        Bill amount {{water.bill}}<br>Payment status :
+                                        {% if water.status %}
+                                             paid
+                                        {% else %}
+                                             unpaid
+                                        {% endif %}
+                                    </span>
+                                </p>
+                            </div>
+                            <div class="section">
+                                {% if water.status %}
+                                    <form class="col s12" action="{% url 'payment:gen' %}" method="post" enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                        <button class="btn waves-effect waves-light center" type="submit" name="action" value="Water {{ water.id }}">Generate
+                                            <i class="material-icons right">send</i>
+                                        </button>
+                                    </form>
+                                {% endif %}
+                            </div>
+                            <div class="divider"></div>
+                            <div class="section"></div>
+                            {% if forloop.counter == 2 %}
+                                {{ break }}
+                            {% endif %}
+                        {% endfor %}
+                        <div class="divider"></div>
+                    {% else %}
+                        <div class="divider"></div>
+                        <p>
+                            <span class="white-text">No subscriptions for water</span>
+                        </p>
+                        <div class="divider"></div>
+                    {% endif %}
+                </div>
+<!-- gas -->
+                <div class="card-panel teal lighten">
+                    {% if user.gas_set.all %}
+                        <p>
+                            <span class="white-text">Subscriptions of Gas</span>
+                        </p>
+                        {% for gas in user.gas_set.all %}
+                            <div class="divider"></div>
+                            <div class="section">
+                                <p>
+                                    <span class = "white-text">Bill date {{gas.bill_date}}<br>Bill due date {{gas.due_date}}<br>
+                                        Bill amount {{gas.bill}}<br>Payment status :
+                                        {% if gas.status %}
+                                             paid
+                                        {% else %}
+                                             unpaid
+                                        {% endif %}
+                                    </span>
+                                </p>
+                            </div>
+                            <div class="section">
+                                {% if gas.status %}
+                                    <form class="col s12" action="{% url 'payment:gen' %}" method="post" enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                        <button class="btn waves-effect waves-light center" type="submit" name="action" value="Gas {{ gas.id }}">Generate
+                                            <i class="material-icons right">send</i>
+                                        </button>
+                                    </form>
+                                {% endif %}
+                            </div>
+                            <div class="divider"></div>
+                            <div class="section"></div>
+                            {% if forloop.counter == 2 %}
+                                {{ break }}
+                            {% endif %}
+                        {% endfor %}
+                        <div class="divider"></div>
+                    {% else %}
+                        <div class="divider"></div>
+                        <p>
+                            <span class="white-text">No subscriptions for Gas</span>
+                        </p>
+                        <div class="divider"></div>
+                    {% endif %}
+                </div>
+<!-- cable -->
+                <div class="card-panel teal lighten">
+                    {% if user.cable_set.all %}
+                        <p>
+                            <span class="white-text">Subscriptions of Cable</span>
+                        </p>
+                        {% for cable in user.cable_set.all %}
+                            <div class="divider"></div>
+                            <div class="section">
+                                <p>
+                                    <span class = "white-text">Bill date {{cable.bill_date}}<br>Bill due date {{cable.due_date}}<br>
+                                        Bill amount {{cable.bill}}<br>Payment status :
+                                        {% if cable.status %}
+                                             paid
+                                        {% else %}
+                                             unpaid
+                                        {% endif %}
+                                    </span>
+                                </p>
+                            </div>
+                            <div class="section">
+                                {% if cable.status %}
+                                    <form class="col s12" action="{% url 'payment:gen' %}" method="post" enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                        <button class="btn waves-effect waves-light center" type="submit" name="action" value="Cable {{ cable.id }}">Generate
+                                            <i class="material-icons right">send</i>
+                                        </button>
+                                    </form>
+                                {% endif %}
+                            </div>
+                            <div class="divider"></div>
+                            <div class="section"></div>
+                            {% if forloop.counter == 2 %}
+                                {{ break }}
+                            {% endif %}
+                        {% endfor %}
+                        <div class="divider"></div>
+                    {% else %}
+                        <div class="divider"></div>
+                        <p>
+                            <span class="white-text">No subscriptions for Cable</span>
+                        </p>
+                        <div class="divider"></div>
+                    {% endif %}
+                </div>
+<!-- paper -->
+                <div class="card-panel teal lighten">
+                    {% if user.paper_set.all %}
+                        <p>
+                            <span class="white-text">Subscriptions of Paper</span>
+                        </p>
+                        {% for paper in user.paper_set.all %}
+                            <div class="divider"></div>
+                            <div class="section">
+                                <p>
+                                    <span class = "white-text">Bill date {{paper.bill_date}}<br>Bill due date {{paper.due_date}}<br>
+                                        Bill amount {{paper.bill}}<br>Payment status :
+                                        {% if paper.status %}
+                                             paid
+                                        {% else %}
+                                             unpaid
+                                        {% endif %}
+                                    </span>
+                                </p>
+                            </div>
+                            <div class="section">
+                                {% if paper.status %}
+                                    <form class="col s12" action="{% url 'payment:gen' %}" method="post" enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                        <button class="btn waves-effect waves-light center" type="submit" name="action" value="Paper {{ paper.id }}">Generate
+                                            <i class="material-icons right">send</i>
+                                        </button>
+                                    </form>
+                                {% endif %}
+                            </div>
+                            <div class="divider"></div>
+                            <div class="section"></div>
+                            {% if forloop.counter == 2 %}
+                                {{ break }}
+                            {% endif %}
+                        {% endfor %}
+                        <div class="divider"></div>
+                    {% else %}
+                        <div class="divider"></div>
+                        <p>
+                            <span class="white-text">No subscriptions for Paper</span>
+                        </p>
+                        <div class="divider"></div>
+                    {% endif %}
+                </div>
+<!-- telecom1 -->
+                <div class="card-panel teal lighten">
+                    {% if user.telecom1_set.all %}
+                        <p>
+                            <span class="white-text">Subscriptions of Telecom1</span>
+                        </p>
+                        {% for telecom1 in user.telecom1_set.all %}
+                            <div class="divider"></div>
+                            <div class="section">
+                                <p>
+                                    <span class = "white-text">Bill date {{telecom1.bill_date}}<br>Bill due date {{telecom1.due_date}}<br>
+                                        Bill amount {{telecom1.bill}}<br>Payment status :
+                                        {% if telecom1.status %}
+                                             paid
+                                        {% else %}
+                                             unpaid
+                                        {% endif %}
+                                    </span>
+                                </p>
+                            </div>
+                            <div class="section">
+                                {% if telecom1.status %}
+                                    <form class="col s12" action="{% url 'payment:gen' %}" method="post" enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                        <button class="btn waves-effect waves-light center" type="submit" name="action" value="Telecom1 {{ telecom1.id }}">Generate
+                                            <i class="material-icons right">send</i>
+                                        </button>
+                                    </form>
+                                {% endif %}
+                            </div>
+                            <div class="divider"></div>
+                            <div class="section"></div>
+                            {% if forloop.counter == 2 %}
+                                {{ break }}
+                            {% endif %}
+                        {% endfor %}
+                        <div class="divider"></div>
+                    {% else %}
+                        <div class="divider"></div>
+                        <p>
+                            <span class="white-text">No subscriptions for Telecom1</span>
+                        </p>
+                        <div class="divider"></div>
+                    {% endif %}
+                </div>
+<!-- telecom2 -->
+                <div class="card-panel teal lighten">
+                    {% if user.telecom2_set.all %}
+                        <p>
+                            <span class="white-text">Subscriptions of Telecom2</span>
+                        </p>
+                        {% for telecom2 in telecom2.bsnl_set.all %}
+                            <div class="divider"></div>
+                            <div class="section">
+                                <p>
+                                    <span class = "white-text">Bill date {{telecom2.bill_date}}<br>Bill due date {{telecom2.due_date}}<br>
+                                        Bill amount {{telecom2.bill}}<br>Payment status :
+                                        {% if telecom2.status %}
+                                             paid
+                                        {% else %}
+                                             unpaid
+                                        {% endif %}
+                                    </span>
+                                </p>
+                            </div>
+                            <div class="section">
+                                {% if telecom2.status %}
+                                    <form class="col s12" action="{% url 'payment:gen' %}" method="post" enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                        <button class="btn waves-effect waves-light center" type="submit" name="action" value="Telecom2 {{ telecom2.id }}">Generate
+                                            <i class="material-icons right">send</i>
+                                        </button>
+                                    </form>
+                                {% endif %}
+                            </div>
+                            <div class="divider"></div>
+                            <div class="section"></div>
+                            {% if forloop.counter == 2 %}
+                                {{ break }}
+                            {% endif %}
+                        {% endfor %}
+                        <div class="divider"></div>
+                    {% else %}
+                        <div class="divider"></div>
+                        <p>
+                            <span class="white-text">No subscriptions for Telecom2</span>
+                        </p>
+                        <div class="divider"></div>
+                    {% endif %}
+                </div>
+            </div>
+{% endblock %}
+
+{% block sidebar %}
+
+{% endblock %}
+
+{% block parallax %}
+    <div id="index-banner1" class="parallax-container">
+            <div class="section no-pad-bot">
+                <div class="container">
+                    <br><br>
+                    <div class="row bottom">
+                        <h5 class="header col s12 light white-text">       </h5>
+                    </div>
+                    <div class="row bottom">
+
+                        <a href="{% url 'payment:user_logout' %}" id="download-button1" class="btn-large waves-effect waves-light teal lighten-1">Logout</a>
+                    </div>
+                    <br><br>
+                </div>
+            </div>
+            <div class="parallax">
+                {% load staticfiles %}
+                <img src="{% static 'payment/images/test5.png' %}" alt="Unsplashed background img 1">
+            </div>
+    </div>
+
+    <div class="container">
+        <div class="section">
+
+            <div class="row">
+                <div class="col s12 m12 l12">
+                    <ul class="collapsible" data-collapsible="accordion">
+                        <li>
+                            <div class="collapsible-header"><i class="material-icons">info</i>More info</div>
+                            <div class="col s12 m12 collapsible-body">
+                                <div class="card teal horizontal">
+                                    <div class="card-image">
+                                        {% load staticfiles %}
+                                        <img src="{% static 'payment/images/Help1.png' %}">
+                                        <span class="card-title">Site Guide</span>
+                                    </div>
+                                    <div class="card-content white-text">
+                                        <p>
+                                            The section contains all your recent bills. You can also change your account password through the
+                                            kink in the top right corner. Make sure you logout before you leave to keep your bill details
+                                            secure
+                                        </p>
+                                    </div>
+                                    <div class="card-action">
+                                        <a href="{% url 'payment:user_logout' %}">Logout</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="collapsible-header active"><i class="material-icons">group</i>User Experience Focused</div>
+                            <div class="collapsible-body">
+                                <div class="section">
+                                    <p class="light">We did most of the heavy lifting for you to provide a simple portal to keep you up on all your bills. All your bills are kept secure and can only be accesses by you.</p>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block footer %}
+    <li><a class="grey-text text-lighten-3" href="{% url 'payment:index' %}">Home</a></li>
+    <li><a class="grey-text text-lighten-3" href="/admin/">Admin</a></li>
+    <li><a class="grey-text text-lighten-3" href="{% url 'payment:user_logout' %}">Logout</a></li>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends 'payment/base.html' %}
+
+{% block title %}
+    User add
+{% endblock %}
+
+{% block body %}
+    <div class="col s9">
+        <div class="card-panel teal">
+            <h5><span class="white-text">Enter user details</span></h5>
+            <div class="container z-depth-5">
+                <div class="card-panel white">
+                    <div class="divider"></div>
+                    <div class="row">
+                        <form class="col s12" action="" method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+<!--                            {% include 'payment/from-template.html'%}-->
+                            {% for field in form %}
+                                <div class="row">
+                                    <p class="white-text">{{ field.errors }}</p>
+                                    <div class="input-field col s12">
+                                        <input placeholder="" id="fld{{ forloop.counter }}" type="text" class="validate">
+                                        <label for="fld{{ forloop.counter }}">{{ field.label_tag }}</label>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                            <button class="btn waves-effect waves-light center" type="submit" name="action">Submit
+                                <i class="material-icons right">send</i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

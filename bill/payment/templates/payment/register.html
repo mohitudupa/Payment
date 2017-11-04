@@ -1,0 +1,225 @@
+{% extends 'payment/base.html' %}
+
+{% block title %}
+    User Registration
+{% endblock %}
+
+{% block nav %}
+
+{% block side_nav %}
+
+{% endblock %}
+
+{% endblock %}
+
+{% block bread %}
+    <a href="{% url 'payment:index' %}" class="breadcrumb">Home</a>
+    <a href="" class="breadcrumb">Register</a>
+{% endblock %}
+
+{% block body %}
+
+    <div class="col s12 m12 l12">
+        <div class="card-panel teal">
+            <h5><span class="white-text">User Registration</span></h5>
+            <div class="container z-depth-5">
+                <div class="card-panel white">
+                    <div class="divider"></div>
+                    <div class="row">
+                        <form class="col s12" action="" method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                                <div class="row">
+                                    {% if error.0 %}
+                                        <div class="divider"></div>
+                                            <div class="container">
+                                                <p class="red-text">{{ error.0 }}</p>
+                                            </div>
+                                    {% endif %}
+                                    <div class="input-field col s12">
+                                        <i class="material-icons prefix">account_circle</i>
+                                        <input id="email" type="email" class="validate" name="email" value="{{ pre_fill.0 }}">
+                                        <label for="email">Email</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    {% if error.1 %}
+                                        <div class="divider"></div>
+                                            <div class="container">
+                                                <p class="red-text">{{ error.1 }}</p>
+                                            </div>
+                                    {% endif %}
+                                    <div class="input-field col s12">
+                                        <i class="material-icons prefix">lock</i>
+                                        <input id="password1" type="password" class="validate" name="password1">
+                                        <label for="password1">Password</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    {% if error.1 %}
+                                        <div class="divider"></div>
+                                            <div class="container">
+                                                <p class="red-text">{{ error.1 }}</p>
+                                            </div>
+                                    {% endif %}
+                                    <div class="input-field col s12">
+                                        <i class="material-icons prefix">lock</i>
+                                        <input id="password2" type="password" class="validate" name="password2">
+                                        <label for="password2">Confirm Password</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    {% if error.2 %}
+                                        <div class="divider"></div>
+                                            <div class="container">
+                                                <p class="red-text">{{ error.2 }}</p>
+                                            </div>
+                                    {% endif %}
+                                    <div class="input-field col s12">
+                                        <i class="material-icons prefix">assignment</i>
+                                        <input id="first" type="text" name="first" value="{{ pre_fill.2 }}">
+                                        <label for="first">First name</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    {% if error.3 %}
+                                        <div class="divider"></div>
+                                            <div class="container">
+                                                <p class="red-text">{{ error.3 }}</p>
+                                            </div>
+                                    {% endif %}
+                                    <div class="input-field col s12">
+                                        <i class="material-icons prefix">assignment</i>
+                                        <input id="last" type="text" name="last" value="{{ pre_fill.3 }}">
+                                        <label for="password">Last name</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    {% if error.4 %}
+                                        <div class="divider"></div>
+                                            <div class="container">
+                                                <p class="red-text">{{ error.4 }}</p>
+                                            </div>
+                                    {% endif %}
+                                    <div class="input-field col s12">
+                                        <i class="material-icons prefix">local_phone</i>
+                                        <input id="phone" type="text" name="phone" value="{{ pre_fill.4 }}">
+                                        <label for="phone">Phone Nunber</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    {% if error.5 %}
+                                        <div class="divider"></div>
+                                            <div class="container">
+                                                <p class="red-text">{{ error.5 }}</p>
+                                            </div>
+                                    {% endif %}
+                                    <div class="input-field col s12">
+                                        <i class="material-icons prefix">location_city</i>
+                                        <input id="city" type="text" name="city" value="{{ pre_fill.5 }}">
+                                        <label for="city">City</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    {% if error.6 %}
+                                        <div class="divider"></div>
+                                            <div class="container">
+                                                <p class="red-text">{{ error.6 }}</p>
+                                            </div>
+                                    {% endif %}
+                                    <div class="input-field col s12">
+                                        <i class="material-icons prefix">location_on</i>
+                                        <input id="area" type="text" name="area" value="{{ pre_fill.6 }}">
+                                        <label for="area">Area</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    {% if error.7 %}
+                                        <div class="divider"></div>
+                                            <div class="container">
+                                                <p class="red-text">{{ error.7 }}</p>
+                                            </div>
+                                    {% endif %}
+                                    <div class="input-field col s12">
+                                        <i class="material-icons prefix">local_post_office</i>
+                                        <input id="zip" type="text" name="zip" value="{{ pre_fill.7 }}">
+                                        <label for="zip">Zip</label>
+                                    </div>
+                                </div>
+                            <button class="btn waves-effect waves-light center" type="submit" name="action">Submit
+                                <i class="material-icons right">send</i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block parallax %}
+    <div id="index-banner1" class="parallax-container">
+            <div class="section no-pad-bot">
+                <div class="container">
+                    <br><br>
+                    <div class="row bottom">
+                        <h5 class="header col s12 light white-text">       </h5>
+                    </div>
+                    <br><br>
+                </div>
+            </div>
+            <div class="parallax">
+                {% load staticfiles %}
+                <img src="{% static 'payment/images/test5.png' %}" alt="Unsplashed background img 1">
+            </div>
+    </div>
+
+    <div class="container">
+        <div class="section">
+
+            <div class="row">
+                <div class="col s12 m12 l12">
+                    <ul class="collapsible" data-collapsible="accordion">
+                        <li>
+                            <div class="collapsible-header"><i class="material-icons">info</i>More info</div>
+                            <div class="col s12 m12 collapsible-body">
+                                <div class="card teal horizontal">
+                                    <div class="card-image">
+                                        {% load staticfiles %}
+                                        <img src="{% static 'payment/images/Help1.png' %}">
+                                        <span class="card-title">Site Guide</span>
+                                    </div>
+                                    <div class="card-content white-text">
+                                        <p>Enter your user details above to create a user account to start receiving updates
+                                        on your bills today. Your details will be kept private and your passwords will
+                                        not be disclosed.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="collapsible-header active"><i class="material-icons">group</i>User Experience Focused</div>
+                            <div class="collapsible-body">
+                                <div class="section">
+                                    <p class="light">We did most of the heavy lifting for you to provide a simple portal to keep you up on all your bills. All your bills are kept secure and can only be accesses by you.</p>
+                                    <p class="light">Signup now to experience easy and secure payments of your bills</p>
+
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block sidebar %}
+
+{% endblock %}
+
+{% block footer %}
+    <li><a class="grey-text text-lighten-3" href="{% url 'payment:index' %}">Home</a></li>
+    <li><a class="grey-text text-lighten-3" href="/admin/">Admin</a></li>
+{% endblock %}

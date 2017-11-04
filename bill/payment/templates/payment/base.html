@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Payment{% endblock %}</title>
+        {% load staticfiles %}
+        <link rel="stylesheet" type="text/css" href="{% static 'payment/materialize.css' %}"/>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <script type="text/javascript" src="{% static 'payment/materialize.js' %}"></script>
+        <script src="{% static 'payment/init.js' %}"></script>
+    </head>
+    <body>
+        {% load staticfiles %}
+
+
+<!--
+        <nav>
+            <div class="nav-wrapper red accent-2">
+                <a href="{% url 'payment:index' %}" class="brand-logo center">  Logo</a>
+                <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    {qw% block nav %}
+                    <li><a href="{% url 'payment:index' %}">Home</a></li>
+                    <li><a href="/admin/">Admin</a></li>
+                    <li><a href="/payment/user/login">User Login</a></li>
+                    <li><a href="/payment/company/login">Company Login</a></li>
+                    {qw% endblock %}
+                </ul>
+                <ul class="side-nav" id="mobile-demo">
+                    <li><a href="{% url 'payment:index' %}">Home</a></li>
+                    <li><a href="/admin/">Admin</a></li>
+                    <li><a href="/payment/1">Details</a></li>
+              </ul>
+            </div>
+        </nav>
+-->
+        <nav>
+            <div class="nav-wrapper red lighten-1">
+                <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+                <div class="row">
+                    <div class="col s1"></div>
+                    <div class="col s11">
+                        {% block bread %}
+                            <a href="" class="breadcrumb">Home</a>
+                        {% endblock %}
+                        <ul id="nav-mobile" class="right hide-on-med-and-down">
+                            <li><a href="{% url 'payment:index' %}"><i class="material-icons prefix">receipt</i></a></li>
+                            {% block nav %}
+
+                            {% endblock %}
+                        </ul>
+                        <ul class="side-nav" id="mobile-demo">
+                            <li><a href="{% url 'payment:index' %}"><i class="material-icons prefix">receipt</i></a></li>
+                            {% block side_nav %}
+
+                            {% endblock %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+
+
+
+
+
+        <div class="row">
+
+        {% block body %}
+        {% endblock %}
+
+        {% block sidebar %}
+            <div class="col s12 m3 l3 card-panel blue-grey darken-1">
+                <div class="row">
+                    <div class="col s12 m12">
+                        <div class="card">
+                            <div class="card-image">
+                                {% load staticfiles %}
+                                <img src="{% static 'payment/images/img1.png' %}">
+                                <span class="card-title">Blue Lantern</span>
+                            </div>
+                            <div class="card-content">
+                                <p>I am a very simple card. I am good at containing small bits of information.
+                                    I am convenient because I require little markup to use effectively.</p>
+                            </div>
+                            <div class="card-action">
+                                <a href="#">This is a link</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s12 m12">
+                        <div class="card">
+                            <div class="card-image">
+                                {% load staticfiles %}
+                                <img src="{% static 'payment/images/img2.png' %}">
+                                <span class="card-title">Card Title</span>
+                            </div>
+                            <div class="card-content">
+                                <p>I am a very simple card. I am good at containing small bits of information.
+                                    I am convenient because I require little markup to use effectively.</p>
+                            </div>
+                            <div class="card-action">
+                                <a href="#">This is a link</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s12 m12">
+                        <div class="card">
+                            <div class="card-image">
+                                {% load staticfiles %}
+                                <img src="{% static 'payment/images/img3.png' %}">
+                                <span class="card-title">Card Title</span>
+                            </div>
+                            <div class="card-content">
+                                <p>I am a very simple card. I am good at containing small bits of information.
+                                    I am convenient because I require little markup to use effectively.</p>
+                            </div>
+                            <div class="card-action">
+                                <a href="#">This is a link</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s12 m12">
+                        <div class="card">
+                            <div class="card-image">
+                                {% load staticfiles %}
+                                <img src="{% static 'payment/images/img4.png' %}">
+                                <span class="card-title">Card Title</span>
+                            </div>
+                            <div class="card-content">
+                                <p>I am a very simple card. I am good at containing small bits of information.
+                                    I am convenient because I require little markup to use effectively.</p>
+                            </div>
+                            <div class="card-action">
+                                <a href="#">This is a link</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endblock %}
+
+        </div>
+
+        {% block parallax %}
+        {% endblock %}
+
+        <footer class="page-footer red accent-2">
+            <div class="container">
+                <div class="row">
+                    <div class="col l6 s12">
+                        <h5 class="white-text">Thank You For Using Our Service</h5>
+                        <p class="grey-text text-lighten-4">
+                            You can contact us at fakecompany@fakeemail.com!!!!.
+                            You can ask us questions about our service with the contact info given above
+                            or at one of out payment centres.
+                        </p>
+                    </div>
+                    <div class="col l4 offset-l2 s12">
+                        <h5 class="white-text">Links</h5>
+                        <ul>
+                            {% block footer %}
+                            <li><a class="grey-text text-lighten-3" href="{% url 'payment:index' %}">Home</a></li>
+                            <li><a class="grey-text text-lighten-3" href="/admin/">Admin</a></li>
+                            <li><a class="grey-text text-lighten-3" href="{% url 'payment:user_login' %}">User Login</a></li>
+                            <li><a class="grey-text text-lighten-3" href="{% url 'payment:user_login' %}">Company Login</a></li>
+                            {% endblock %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-copyright">
+                <div class="container">
+                    © 2017 Copyright Text
+                </div>
+            </div>
+        </footer>
+    </body>
+</html>
