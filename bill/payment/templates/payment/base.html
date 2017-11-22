@@ -4,7 +4,8 @@
         <meta charset="UTF-8">
         <title>{% block title %}Payment{% endblock %}</title>
         {% load staticfiles %}
-        <link rel="stylesheet" type="text/css" href="{% static 'payment/materialize.min.css' %}"/>
+        <!--<link rel="stylesheet" type="text/css" href="{% static 'payment/materialize.min.css' %}"/>-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
@@ -15,27 +16,6 @@
         {% load staticfiles %}
 
 
-<!--
-        <nav>
-            <div class="nav-wrapper red accent-2">
-                <a href="{% url 'payment:index' %}" class="brand-logo center">  Logo</a>
-                <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
-                <ul id="nav-mobile" class="right hide-on-med-and-down">
-                    {qw% block nav %}
-                    <li><a href="{% url 'payment:index' %}">Home</a></li>
-                    <li><a href="/admin/">Admin</a></li>
-                    <li><a href="/payment/user/login">User Login</a></li>
-                    <li><a href="/payment/company/login">Company Login</a></li>
-                    {qw% endblock %}
-                </ul>
-                <ul class="side-nav" id="mobile-demo">
-                    <li><a href="{% url 'payment:index' %}">Home</a></li>
-                    <li><a href="/admin/">Admin</a></li>
-                    <li><a href="/payment/1">Details</a></li>
-              </ul>
-            </div>
-        </nav>
--->
         <nav>
             <div class="nav-wrapper red lighten-1">
                 <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
