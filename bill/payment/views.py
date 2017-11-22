@@ -298,7 +298,8 @@ def upload(request):
             filename = fs.save(file.name, file)
             uploaded_file_url = fs.url(filename)
             # print(uploaded_file_url)
-            f = open("C:\\Projects\\Django\\bill\\" + uploaded_file_url, 'r')
+            # f = open("C:\\Projects\\Django\\bill\\" + uploaded_file_url, 'r')
+            f = open("/home/cabox/workspace/Payment/bill" + uploaded_file_url, 'r')
             contents = f.read()
             error = 0
             # print(contents.split('\n'))
